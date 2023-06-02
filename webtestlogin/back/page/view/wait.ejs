@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>กำลังทำการวัดค่า SpO2</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<style media="screen">
+	@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Kanit', sans-serif;
+	}
+	body{
+		height: 100vh;
+		width: 100%;
+		background-image: linear-gradient(130deg,#1abc9c,#16a085);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	form.contrainer{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	h1{
+		margin: 20px;
+		color: #fff;
+		font-weight: 500;
+	}
+	.loader{
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-image: linear-gradient(130deg,#1abc9c,#16a085);
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.disppear{
+		animation: vanish 60s forwards;
+	}
+	@keyframes vanish {
+		100%{
+			visibility: hidden;
+		}
+	}
+</style>
+<body>
+	<div class="loader">
+		<h1>กำลังทำการวัดค่า</h1><br/>
+		<div class="ima">
+			<img src="https://i.stack.imgur.com/kOnzy.gif" alt="กำลังทำการวัด" height="100" width="100"/>
+		</div>
+	</div>
+	
+	<center>
+		<section>
+			<h1>
+				วัดค่าเสร็จสิ้น
+			</h1>
+			<div class="redirect"></div>
+		</section>
+	</center>
+		
+	<script>
+		var sec = 0
+		setInterval(()=> {
+			sec += 1;
+			document.getElementById("redirect")
+		}
+		, 1000)
+		setTimeout(()=> window.location = "http://localhost:3000/wait",65000)
+	</script>
+
+	<script>
+		var loader = document.querySelector(".loader")
+
+		window.addEventListener("load", vanish);
+
+		function vanish() {
+			loader.classList.add("disppear");
+		}
+	</script>
+</body>
+</html>

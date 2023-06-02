@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ลงทะเบียน</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$( "#form1" ).submit(function(event) {
+				event.preventDefault();
+
+				$.ajax({
+					type: 'POST',
+					url: '/',
+					data: $('#form1').serialize(),
+					dataType: "json",
+					success: function(response){
+						//alert("a");
+						//console.log(response.Success);
+						$('#form1')[0].reset();
+
+						document.getElementById("check").innerHTML=response.Success;
+         					//ADD THIS CODE
+         					setTimeout(function(){
+         						document.getElementById("check").innerHTML="";
+         					},3000);
+         					if (response.Success=="You are regestered,You can login now.") {
+         						document.getElementById("aa").click();
+         					};
+         				},
+         				error: function() {
+         				}
+         			})
+			});
+		});
+	</script>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Kanit', sans-serif;
+		}
+		li, a, button{
+			font-weight: 500;
+			font-size: 16px;
+			color: #000;
+			text-decoration: none;
+		}
+		
+		form.contrainer{
+			width: 100%;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			text-align: center;
+		}
+		h1{
+			text-align: center;
+			margin: 20px;
+			color: #000;
+			font-weight: 500;
+		}
+		input{
+			border: #000;
+			height: 50px;
+			width: 250px;
+			margin: 10px 0;
+			padding: 0 10px;
+			font-size: medium;
+			outline: none;
+			text-align: center;
+			border-radius: 5px;
+			transition: .5s;
+			cursor: pointer;
+		}
+		.form-control{
+			margin: auto;
+			width: 500px;
+			color: #fff;
+			background: rgb(250, 246, 246);
+			border: 1px solid rgba(255,255,255, 0.6);
+		}
+		.form-control::placeholder{
+			color: #000;
+		}
+		.form-control:hover,
+		.form-control:focus{
+			width: 500px;
+			background: #64c0ad;
+			color: #000;
+		}
+		.btn-success{
+			text-align: center;
+			background: #1abc9c;
+			color: #fff;
+		}
+		.banner{
+			width: 100%;
+			background-color: #1abc9c;
+			background-size: cover;
+			background-position: center;
+		}
+		.navbar{
+			margin: auto;
+			padding: 35px 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.navbar ul li{
+			list-style: none;
+			display: inline-block;
+			margin: 0 20px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class = "banner">
+		<div class = "navbar">
+			<h3>Vital Sign Monitoring Platform</h3>
+			<ul>
+				<li><a href = "/">ลงทะเบียน</a></li>
+				<li><a href = "/loginadmin">ข้อมูลผู้ป่วยทั้งหมด</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="contrainer">
+		
+		<form id="form1" method="post">
+			<h1>
+				กรุณาพิมพ์รหัสบัตรประชาชนของท่าน
+			</h1>
+			<input class="form-control" type="ID" name="ID" placeholder="รหัสบัตรประชาชน" required="" ><br/>
+			<center>
+				<input class="btn-success" type="submit" value="ลงทะเบียน" >
+			</center>
+		</form>
+		
+		<div class="mssg bg-danger">
+			<span id="check"></span>
+		</div>
+		
+		<div id="LangTable">
+			<a href="/prep" id="aa"></a>
+		</div>
+	</div>
+</body>
+</html>

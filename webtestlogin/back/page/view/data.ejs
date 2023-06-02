@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Done!</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Kanit', sans-serif;
+		}
+		body{
+			height: 100vh;
+			width: 100%;
+			background-image: linear-gradient(130deg,#1abc9c,#16a085);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		form.contrainer{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		h2{
+			margin: 20px;
+			color: #fff;
+			font-weight: 500;
+		}
+	</style>
+</head>
+<body>
+	<div class="contrainer">
+		<div>
+			<center>
+				<h2>ค่าระดับออกซิเจนในเลือดของท่าน<h2>
+				<table class="table table-hover text-center">
+					<tr><td>SpO2 </td><td><%= spo2 %></td></tr>
+					<tr><td>PR </td><td><%= pr %></td></tr>
+					<tr><td>PI </td><td><%= pi %></td></tr>
+				</table>
+			</center>
+		</div>
+
+		<div class="redirect"></div>
+
+		<script>
+			var sec = 0
+			setInterval(()=> {
+				sec += 1;
+				document.getElementById("redirect")
+			}
+			, 1000)
+			setTimeout(()=> window.location = "http://localhost:3000/",30000)
+		</script>
+	</div>
+</body>
+</html>
